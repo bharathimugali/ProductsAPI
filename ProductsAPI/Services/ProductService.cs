@@ -52,7 +52,7 @@ namespace ProductsAPI.Services
             }
 
         }
-        //check for required filed alternative
+        
         public async Task<ProductDto> GetProductByIdAsync(int id)
         {
             try

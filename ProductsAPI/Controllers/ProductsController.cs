@@ -21,6 +21,10 @@ namespace ProductsAPI.Controllers
             _productService = productService;
         }
 
+        /// <summary>
+        /// Retrieve all products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -38,7 +42,11 @@ namespace ProductsAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Retrieve a product by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -56,7 +64,11 @@ namespace ProductsAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Add a new product
+        /// </summary>
+        /// <param name="addProductDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Add(AddProductDto addProductDto)
         {
@@ -70,7 +82,12 @@ namespace ProductsAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
+        /// <summary>
+        /// Update a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateProductDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateProductDto updateProductDto)
         {
@@ -90,6 +107,11 @@ namespace ProductsAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -105,6 +127,12 @@ namespace ProductsAPI.Controllers
             
         }
 
+        /// <summary>
+        /// Decrement stock
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         [HttpPut("decrement-stock/{id}/{quantity}")]
         public async Task<IActionResult> DecrementStock(int id, [Range(1, int.MaxValue, ErrorMessage = "Quantity must be a positive number.")] int quantity)
         {
@@ -129,6 +157,12 @@ namespace ProductsAPI.Controllers
 
         }
 
+        /// <summary>
+        /// Add to stock
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         [HttpPut("add-to-stock/{id}/{quantity}")]
         public async Task<IActionResult> AddToStock(int id, [Range(1, int.MaxValue, ErrorMessage = "Quantity must be a positive number.")] int quantity)
         {
